@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+
+{% block title %}Book Ticket - Ticket Booking System{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header">
+                <h3>Book a Ticket</h3>
+            </div>
+            <div class="card-body">
+                <form action="{{ url_for('book_ticket') }}" method="POST">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="age">Age</label>
+                        <input type="number" id="age" name="age" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" class="form-control" required>
+                    </div>
+
+<!-- In templates/book_ticket.html - add this field to the form -->
+<div class="form-group">
+    <label for="museum_name">Select Museum</label>
+    <select id="museum_name" name="museum_name" class="form-control" required>
+        <option value="">-- Select a Museum --</option>
+        <option value="National Museum of Natural History">National Museum of Natural History</option>
+        <option value="Modern Art Gallery">Modern Art Gallery</option>
+        <option value="Science & Technology Museum">Science & Technology Museum</option>
+        <option value="Historical Artifacts Museum">Historical Artifacts Museum</option>
+        <option value="Maritime Museum">Maritime Museum</option>
+    </select>
+</div>
+
+
+                    <!-- In templates/book_ticket.html - add these fields to the form -->
+<div class="form-group">
+    <label for="museum_visit_date">Visit Date</label>
+    <input type="date" id="museum_visit_date" name="museum_visit_date" class="form-control" required>
+</div>
+<div class="form-group">
+    <label for="museum_visit_time">Visit Time</label>
+    <select id="museum_visit_time" name="museum_visit_time" class="form-control" required>
+        <option value="09:00 AM">09:00 AM</option>
+        <option value="10:00 AM">10:00 AM</option>
+        <option value="11:00 AM">11:00 AM</option>
+        <option value="12:00 PM">12:00 PM</option>
+        <option value="01:00 PM">01:00 PM</option>
+        <option value="02:00 PM">02:00 PM</option>
+        <option value="03:00 PM">03:00 PM</option>
+        <option value="04:00 PM">04:00 PM</option>
+    </select>
+</div>
+                    <button type="submit" class="btn btn-primary">Book Ticket</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

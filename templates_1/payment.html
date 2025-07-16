@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block title %}Payment - Ticket Booking System{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">
+                    <h2>Complete Payment</h2>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h4>Booking Details</h4>
+                            <p><strong>Name:</strong> {{ ticket.name }}</p>
+                            <p><strong>Age:</strong> {{ ticket.age }}</p>
+                            <p><strong>Email:</strong> {{ ticket.email }}</p>
+                            <!-- In payment.html - add this to the booking details section -->
+<p><strong>Museum:</strong> {{ ticket.museum_name }}</p>
+                            <p><strong>Visit Date:</strong> {{ ticket.museum_visit_date.strftime('%d-%m-%Y') }}</p>
+                            <p><strong>Visit Time:</strong> {{ ticket.museum_visit_time }}</p>
+                            <p><strong>Amount:</strong> ₹200.00</p>
+                        </div>
+                        <div class="col-md-6 text-center">
+                            <h4>Scan QR Code to Pay</h4>
+                            <!-- Change this line -->
+<img src="{{ url_for('static', filename='images/my_upi_qr.jpg') }}" alt="UPI QR Code" style="max-width: 200px;">
+                            <p class="mt-2">Use any UPI app to scan and pay</p>
+                        </div>
+                    </div>
+                    <hr>
+                    <form action="{{ url_for('confirm_payment', ticket_id=ticket.id) }}" method="POST" class="mt-4">
+                        <div class="form-group">
+                            <label for="upi_transaction_id">UPI Transaction ID</label>
+                            <input type="text" id="upi_transaction_id" name="upi_transaction_id" class="form-control" required>
+                            <small class="form-text text-muted">Enter the UPI transaction ID after completing payment</small>
+                        </div>
+                        <div class="text-center mt-3">
+                            <button type="submit" class="btn btn-success btn-lg">Confirm Payment</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

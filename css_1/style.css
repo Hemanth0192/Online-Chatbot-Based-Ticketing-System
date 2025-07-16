@@ -1,0 +1,89 @@
+/* Main Form Container */
+.ticket-form {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 25px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    font-family: 'Arial', sans-serif;
+}
+
+/* Form Fields */
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 600;
+    color: #333;
+    font-size: 14px;
+}
+
+.form-control {
+    width: 100%;
+    padding: 10px 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+    transition: border-color 0.3s ease;
+}
+
+/* Specific styling for each field */
+#name, #age, #email, #museum_name, #museum_visit_date, #museum_visit_time {
+    width: 100%;
+}
+
+/* Date and Time Input styling */
+#museum_visit_date, #museum_visit_time {
+    cursor: pointer;
+}
+
+/* Submit Button */
+.btn-primary {
+    width: 100%;
+    padding: 12px;
+    background-color: #4a90e2;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: #3a7bc8;
+}
+
+/* Museum Selection Dropdown */
+#museum_name {
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 16px;
+    padding-right: 40px;
+}
+
+/* Error Messages */
+.error-message {
+    color: #d32f2f;
+    font-size: 12px;
+    margin-top: 5px;
+    display: block;
+}
+
+/* Payment Status Field (if visible in form) */
+.payment-status {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.payment-status input {
+    margin-right: 8px;
+}

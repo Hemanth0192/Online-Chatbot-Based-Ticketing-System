@@ -1,0 +1,53 @@
+<style>
+    .ticket-card {
+      background: #f9f9ff;
+      border: 2px solid #007bff;
+      border-radius: 1rem;
+      box-shadow: 0 4px 10px rgba(0, 123, 255, 0.2);
+      transition: transform 0.3s ease;
+    }
+  
+    .ticket-card:hover {
+      transform: scale(1.02);
+    }
+  
+    .ticket-content {
+      text-align: center;
+    }
+  
+    .ticket-title {
+      color: #007bff;
+      font-weight: bold;
+    }
+  </style>
+  
+  <div class="container mt-5">
+    <div class="row justify-content-center">
+      <div class="col-md-8">
+  
+        {% for ticket in tickets %}
+        <div class="card mb-4 ticket-card">
+          <div class="card-body ticket-content">
+            <h5 class="card-title ticket-title">{{ ticket.name }}</h5>
+            <p class="card-text">Age: {{ ticket.age }}</p>
+            <!-- In my_tickets.html - add this to each ticket card -->
+<p class="card-text">Museum: {{ ticket.museum_name }}</p>
+            <p class="card-text">Visit Date: {{ ticket.museum_visit_date.strftime('%d-%m-%Y') }}</p>
+            <p class="card-text">Visit Time: {{ ticket.museum_visit_time }}</p>
+  
+            {% if ticket.payment_status %}
+            <div class="text-center mb-3">
+              <img src="{{ url_for('ticket_qr', ticket_id=ticket.id) }}" alt="Ticket QR Code" style="max-width: 150px;">
+              <p class="mt-1"><small>Ticket Code: {{ ticket.ticket_code }}</small></p>
+            </div>
+            {% endif %}
+  
+            <a href="#" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal{{ ticket.id }}">Delete</a>
+          </div>
+        </div>
+        {% endfor %}
+  
+      </div>
+    </div>
+  </div>
+  

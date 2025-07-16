@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block title %}Payment Success - Ticket Booking System{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="card">
+        <div class="card-header bg-success text-white">
+            <h2>Payment Successful!</h2>
+        </div>
+        <div class="card-body">
+            <h3>E-Receipt</h3>
+            <div class="row">
+                <div class="col-md-6">
+                    <p><strong>Booking ID:</strong> #{{ ticket.id }}</p>
+                    <p><strong>Name:</strong> {{ ticket.name }}</p>
+                    <p><strong>Email:</strong> {{ ticket.email }}</p>
+                </div>
+                <div class="col-md-6">
+                    <!-- In payment_success.html - add this to the receipt details -->
+<p><strong>Museum:</strong> {{ ticket.museum_name }}</p>
+                    <p><strong>Visit Date:</strong> {{ ticket.museum_visit_date.strftime('%d-%m-%Y') }}</p>
+                    <p><strong>Visit Time:</strong> {{ ticket.museum_visit_time }}</p>
+                    <p><strong>Ticket Code:</strong> {{ ticket.ticket_code }}</p>
+                </div>
+            </div>
+            <div class="text-center mt-4">
+                <img src="{{ url_for('static', filename='ticket_qrcode.png') }}" alt="Ticket QR Code" style="max-width: 200px;">
+                <p class="mt-2">Show this QR code at the museum entrance</p>
+            </div>
+            <div class="alert alert-info mt-3">
+                <p>A confirmation email with ticket details has been sent to {{ ticket.email }}</p>
+            </div>
+            <div class="text-center mt-4">
+                <a href="{{ url_for('my_tickets') }}" class="btn btn-primary">View My Tickets</a>
+                <a href="{{ url_for('home') }}" class="btn btn-secondary">Return to Home</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

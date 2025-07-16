@@ -1,0 +1,90 @@
+<!-- Create a new file: templates/admin_dashboard.html -->
+{% extends "base.html" %}
+
+{% block title %}Admin Dashboard - Museum Ticket System{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-10">
+            <div class="card mb-4">
+                <div class="card-header bg-primary text-white">
+                    <h2 class="text-center">Admin Dashboard</h2>
+                </div>
+                <div class="card-body">
+                    <div class="row mb-4">
+                        <div class="col-md-4">
+                            <div class="card text-white bg-info">
+                                <div class="card-body text-center">
+                                    <h5 class="card-title">Total Tickets</h5>
+                                    <h2>{{ total_tickets }}</h2>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card text-white bg-success">
+                                <div class="card-body text-center">
+                                    <h5 class="card-title">Paid Tickets</h5>
+                                    <h2>{{ paid_tickets }}</h2>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card text-white bg-warning">
+                                <div class="card-body text-center">
+                                    <h5 class="card-title">Total Users</h5>
+                                    <h2>{{ total_users }}</h2>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <h3 class="text-center mb-3">Recent Bookings</h3>
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <!-- In admin_dashboard.html - update the table header -->
+<thead class="thead-dark">
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Museum</th>  <!-- Add this column -->
+        <th>Date</th>
+        <th>Time</th>
+        <th>Status</th>
+        <th>Actions</th>
+    </tr>
+</thead>
+
+<!-- And in the table body -->
+<tbody>
+    {% for ticket in tickets %}
+    <tr>
+        <td>{{ ticket.id }}</td>
+        <td>{{ ticket.name }}</td>
+        <td>{{ ticket.email }}</td>
+        <td>{{ ticket.museum_name }}</td>  <!-- Add this cell -->
+        <td>{{ ticket.museum_visit_date.strftime('%d-%m-%Y') }}</td>
+        <td>{{ ticket.museum_visit_time }}</td>
+        <td>
+            {% if ticket.payment_status %}
+            <span class="badge badge-success">Paid</span>
+            {% else %}
+            <span class="badge badge-danger">Pending</span>
+            {% endif %}
+        </td>
+        <td>
+            <a href="#" class="btn btn-sm btn-info">View</a>
+            <a href="#" class="btn btn-sm btn-danger">Delete</a>
+        </td>
+    </tr>
+    {% endfor %}
+</tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
